@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Search Puzzle</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    header {
+      background-image: url("https://media.istockphoto.com/id/493626860/photo/colorful-saree-background.jpg?s=612x612&w=0&k=20&c=3buwZCcNoW-nZITKAAEonZBD6onlrOPq1yDH_lAuegc=");
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+    }
+
+    nav a {
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9em;
+    }
+
+    nav a:hover {
+      background-color: #8B0000;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #140d0d;
+    }
+
+    .puzzle-container {
+      margin-top: 30px;
+      padding: 20px;
+      border: 3px solid #4a90e2;
+      border-radius: 15px;
+      background-color: white;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(14, 30px);
+      gap: 5px;
+      justify-content: center;
+    }
+
+    .cell {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      font-weight: bold;
+      text-transform: uppercase;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .selected {
+      background-color: yellow;
+    }
+
+    .found {
+      background-color: lightgreen;
+    }
+
+    .word-list {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .word-list h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .word-list ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .word-list li {
+      display: inline-block;
+      margin: 5px 15px;
+      font-weight: bold;
+      color: #4a4a4a;
+    }
+
+    
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Hall’s Layout and the East Indian Community</h1>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="history.html">Historical Context</a>
+  <a href="analysis.html">Analysis</a>
+  <a href="gallery.html">Visual Gallery</a>
+  <a href="reflection&conclusion.html">Conclusion</a>
+  <a href="puzzle.html">Game</a>
+</nav>
+
+<main class="container">
+  <h2>Click on the letters until they form the word and are highlighted. Enjoy!</h2>
+
+  <div class="puzzle-container">
+    <div class="grid" id="puzzleGrid"></div>
+    <div class="word-list">
+      <h2>Words to Find:</h2>
+      <ul>
+        <li>hallslayout</li>
+        <li>eastindians</li>
+        <li>georgehall</li>
+        <li>heritage</li>
+        <li>plantations</li>
+        <li>culturallegacy</li>
+        <li>indentureship</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 East Indians in Belize</p>
+</footer>
+
+<script>
+  const words = [
+    "hallslayout",
+    "eastindians",
+    "georgehall",
+    "heritage",
+    "plantations",
+    "culturallegacy",
+    "indentureship"
+  ];
+
+  const gridSize = 14;
+  const grid = Array.from({ length: gridSize }, () => Array(gridSize).fill(""));
+  const wordPositions = {};
+
+  function placeWord(word) {
+    let placed = false;
+    while (!placed) {
+      const direction = Math.floor(Math.random() * 2); // 0 = horizontal, 1 = vertical
+      const row = Math.floor(Math.random() * (direction === 0 ? gridSize : gridSize - word.length));
+      const col = Math.floor(Math.random() * (direction === 1 ? gridSize : gridSize - word.length));
+
+      let fits = true;
+      for (let i = 0; i < word.length; i++) {
+        const r = direction === 0 ? row : row + i;
+        const c = direction === 1 ? col : col + i;
+        if (grid[r][c] && grid[r][c] !== word[i].toUpperCase()) {
+          fits = false;
+          break;
+        }
+      }
+
+      if (fits) {
+        wordPositions[word] = [];
+        for (let i = 0; i < word.length; i++) {
+          const r = direction === 0 ? row : row + i;
+          const c = direction === 1 ? col : col + i;
+          grid[r][c] = word[i].toUpperCase();
+          wordPositions[word].push(`${r}-${c}`);
+        }
+        placed = true;
+      }
+    }
+  }
+
+  words.forEach(placeWord);
+
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      if (!grid[i][j]) {
+        grid[i][j] = letters[Math.floor(Math.random() * letters.length)];
+      }
+    }
+  }
+
+  const gridContainer = document.getElementById("puzzleGrid");
+  const selected = [];
+  const foundWords = new Set();
+
+  for (let i = 0; i < gridSize; i++) {
+    for (let j = 0; j < gridSize; j++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.textContent = grid[i][j];
+      cell.id = `${i}-${j}`;
+      cell.addEventListener("click", () => handleClick(i, j));
+      gridContainer.appendChild(cell);
+    }
+  }
+
+  function handleClick(i, j) {
+    const id = `${i}-${j}`;
+    const cell = document.getElementById(id);
+    if (cell.classList.contains("found")) return;
+    if (cell.classList.contains("selected")) {
+      cell.classList.remove("selected");
+      selected.splice(selected.indexOf(id), 1);
+    } else {
+      cell.classList.add("selected");
+      selected.push(id);
+    }
+    checkForWord();
+  }
+
+  function checkForWord() {
+    for (const word in wordPositions) {
+      const positions = wordPositions[word];
+      if (
+        positions.every(pos => selected.includes(pos)) &&
+        positions.length === selected.length
+      ) {
+        positions.forEach(pos => {
+          document.getElementById(pos).classList.add("found");
+          document.getElementById(pos).classList.remove("selected");
+        });
+        foundWords.add(word);
+        selected.length = 0;
+      }
+    }
+  }
+</script>
+
+</body>
+</html>

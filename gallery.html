@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-image: url("https://media.istockphoto.com/id/493626860/photo/colorful-saree-background.jpg?s=612x612&w=0&k=20&c=3buwZCcNoW-nZITKAAEonZBD6onlrOPq1yDH_lAuegc=");
+      padding:20px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+    }
+
+    nav a {
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.9em;
+    }
+
+    nav a:hover {
+      background-color: #8B0000;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #130f0f;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #140d0d;
+    }
+
+    p {
+      text-align: justify;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-size: 1.1em;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      justify-items: center;
+      margin-top: 30px;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 300px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .image-container:hover .overlay {
+      opacity: 1;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Gallery!!</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="history.html">Historical Context</a>
+    <a href="analysis.html">Analysis</a>
+    <a href="gallery.html">Visual Gallery</a>
+    <a href="reflection&conclusion.html">Conclusion</a>
+    <a href="puzzle.html">Game</a>
+  </nav>
+
+  <div class="container">
+    <main>
+      <h2>About East Indians in Belize</h2>
+      <p>This gallery explores many artifacts about East Indians in their working era.</p>
+
+      <h2>Relevant Images About East Indians</h2>
+
+      <div class="gallery">
+
+        <div class="image-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK5jlQe-kNRSI76-CIj2ZStqZqlYQVsw06qw&s" alt="Mrs. Sylvia Perez" />
+          <div class="overlay">Mrs. Sylvia Perez</div>
+        </div>
+
+        <div class="image-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZkWYewk9QbWT_bWRiKouFL5uUbmrvA1f5pA&s" alt="Kitchen Artifacts" />
+          <div class="overlay">Artifacts used in Kitchen</div>
+        </div>
+
+        <div class="image-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTs29m92lQTu5utKa0OheJdJDR1UISE9BWhOaTlpaQUv8I-tt06EsfB-TOkNVfNg_SEVHU&usqp=CAU" alt="Koata Washing Bowl" />
+          <div class="overlay">Koata - Washing Bowls</div>
+        </div>
+
+        <div class="image-container">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStFjQ3ZQ3HUFu6czKZun5QBEz2MfTwQ4r14Xwc4lZrN0INO7W8hu7osO05z54GrjOo8fo&usqp=CAU" alt="Arrival in Caribbean"/>
+          <div class="overlay">Arrival of East Indians in the Caribbean</div>
+        </div>
+
+        <div class="image-container">
+          <img src="https://static.wixstatic.com/media/43daf6_b43e5dced494472496da4c3fc5102359~mv2.png/v1/fill/w_300,h_255,al_c,q_85,enc_avif,quality_auto/43daf6_b43e5dced494472496da4c3fc5102359~mv2.png" alt="Plantations"/>
+          <div class="overlay">Working in Sugar Cane Plantations</div>
+        </div>
+
+
+        <div class="image-container">
+          <img src="images/hall.png" alt="Hall's Wedding"/>
+          <div class="overlay">William Hall Marriage picture: 1945</div>
+        </div>
+
+        <div class="image-container">
+          <img src="images/hallslayout.png" alt="Halls layout"/>
+          <div class="overlay">Satellite view of part of the Halls Layout</div>
+        </div>
+
+
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 EastIndiansinBelize</p>
+  </footer>
+</body>
+</html>
